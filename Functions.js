@@ -150,8 +150,8 @@ function lol(){
     var color = 'teal';
 }
 // Scope of the varialbes is limited to that function above 
-lol();
-console.log(person)
+lol(); 
+console.log(person) //won't work
 
 // Block scope
 if(true){
@@ -166,18 +166,19 @@ console.log(animal);
 // Therefore, using var could be problematic sometimes 
 let animals = ['grizzly bear', 'panda bear', 'spectacled bear'];
 var i = 10;
-for(var i = 0; i < animal.length; i++){ 
+for(var i = 0; i < animals.length; i++){ 
     console.log(i, animals[i]);
 }
 console.log(i);
 // In this case, the varialbe 'i' is 3 not 10 (potential problem)
 // This can be fixed by reaplacing the line of code with for(let i = 0; i < animal.length; i++){ --- }
-// This means i is scoped to that for loop 
+// scope of i would be changed by using let instead of var  
 
 let i = 10;
-for(let i = 0; i < animal.length; i++){ 
+for(let i = 0; i < animals.length; i++){ 
     console.log(i, animals[i]);
 }
+console.log(i)
 // This works since let in the for loop is scoped to the loop
 // Therefore "i"s outside of the loop and inside of the loop are didferent 
 
@@ -239,7 +240,7 @@ const product = function multiply(x, y){
 // Higher order functions 
 // functions that operate on/with other functions. they can: 
 // accept other functions as arguments
-// return a functions
+// return a function
 
 function add(x, y){
     return x + y;
@@ -312,12 +313,6 @@ pickOne(cry, rage)
 
 
 // functions as return values 
-const triple = multiplyBy(3);
-triple(5);
-
-const double = multiplyBy(2);
-doulbe(8)
-
 function multiplyBy(num){
     return function(x) {
         return x * num;
@@ -325,9 +320,9 @@ function multiplyBy(num){
 }
 // this returns function(x){return x * num}
 
-const triple = miltiplyBy(3);
+const triple = multiplyBy(3);
 triple(6); // 18
-const double = miltiplyBy(2);
+const double = multiplyBy(2);
 double(6) // 12
 
 
