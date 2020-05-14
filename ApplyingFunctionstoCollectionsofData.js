@@ -53,7 +53,7 @@ books.forEach(function(book){
 
 //This is a code block
 for(let book of books){
-    console.log(book.titke.toUpperCase());
+    console.log(book.title.toUpperCase());
 }
 
 for(let i = 0; i < books.length; i++){
@@ -74,7 +74,7 @@ numbers.forEach(function(num, idx){
 const numbers = [20,21,22,23,24,25,26,27];
 const words = ['asap', 'byob', 'rsvp', 'diy'];
 
-const doubles = numbers.map(function(nun){
+const doubles = numbers.map(function(num){
     return num * 2;
 })
 // map does not care if a value is returned or not. Without return statement, it will save undefined
