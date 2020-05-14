@@ -96,22 +96,108 @@ const colors = [
     'indigo',
     'violet'
 ]
- 
-const changeColor = function(){
-    const h1 = document.querySelector('h1');
-    h1.style.color = this.style.backgroundColor;
-    // This refers to whaverever you are adding eventlistener to 
-};
-
-const container = document.querySelector('#boxes');
 
 
-for (let color of colors){
-    const box = document.createElement('div');
-    box.style.backgroundColor = color; 
-    box.classList.add('box');
-    container.appendChild(box);
-    box.addEventListener('click', changeColor);
+// const h1 = document.querySelector('h1'); 
+// const changeColor = function(evt){
+//     console.log(evt)
+//     h1.style.color = this.style.backgroundColor;
+//     // This refers to whaverever you are adding eventlistener to 
+// };
+
+// const container = document.querySelector('#boxes');
+
+
+// for (let color of colors){
+//     const box = document.createElement('div');
+//     box.style.backgroundColor = color; 
+//     box.classList.add('box');
+//     container.appendChild(box);
+//     box.addEventListener('click', changeColor);
+// }
+
+// document.body.addEventListener('keypress', function(e){
+//     console.log(e);
+// })
+
+
+
+// Keypress keydown keyup
+// const input = document.querySelector('#username');
+
+// input.addEventListener('keydown', function(e){ //whatever key is predsed, this event will fire
+//     console.log('key down')
+// })
+
+// input.addEventListener('keyup', function(e){ //whatever key is predsed, this event will fire
+//     console.log('key up')
+// })
+
+// input.addEventListener('keypress', function(e){ //whatever key is predsed, this event will fire
+//     console.log('key press')
+// })
+// // for something to be considered as press, there needs to be 
+// // charactors showing up in the input or changes or space (enter is press)
+
+// const addItemInput = document.querySelector('#addItem');
+// const itemsUL = document.querySelector('#items');
+
+// addItemInput.addEventListener('keypress', function(e){
+//     console.log(e);
+//     if(e.key === 'Enter'){
+//         if(!this.value) return;
+//         //add a new item to list
+//         const newItemtext = this.value;
+//         const newItem = document.createElement('li')
+//         newItem.innerText = newItemtext;
+//         itemsUL.appendChild(newItem);
+//         this.value = '';
+//     }
+// })
+
+// form events & preventDefault
+
+const form = document.querySelector('#signup-form');
+
+const creditCardInput = document.querySelector('#cc');
+const termsCheckbox = document.querySelector('#terms');
+const veggieSelect = document.querySelector('#veggie');
+
+form.addEventListener('submit', function(e){
+    alert("submitted the form");
+    console.log('cc', creditCardInput.value);
+    // console.log('terms', termsCheckbox.value);
+    // This line will not get you input values 
+    console.log('terms', termsCheckbox.checked);
+    console.log('veggieSelect', veggieSelect.value); 
+    // send form data to db
+    // append something to page using form data  
+    e.preventDefault();
+})
+
+
+// Input and Change Event
+
+const formData = {};
+// creditCardInput.addEventListener('input', (e) => {
+//     console.log('CC Changed', e);
+//     formData['cc'] = e.target.value
+// });
+
+// veggieSelect.addEventListener('input', (e) => {
+//     console.log('Veggie!', e);
+//     formData['veggie'] = e.target.value;
+// })
+
+// termsCheckbox.addEventListener('input', (e) => {
+//     console.log('CheckBox', e);
+//     formData['agreeToTerms'] = e.target.checked;
+// })
+
+for(let input of [creditCardInput, termsCheckbox, veggieSelect]){
+    input.addEventListener('input', ({target}) => {
+        // if you put change instead of input, the event will occur when you press enter
+        const {name, type, value, checked} = target;
+        formData[name] = type === 'checkbox' ? checked : value;
+    })
 }
-
-
