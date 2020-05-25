@@ -183,7 +183,7 @@ const runner = {
     title: "Elder of the Order of the Golden Heart of Kenya"
 }
 
-// varialbe name must be the values existing in an object 
+// varialbe name must be the keys with values 
 // but non-existing keys can be passed but the corresponding values will be 'undefined'
 const {first,
        last,
@@ -251,7 +251,7 @@ const response = [
     '200 OK',
     'application/json'
 ]
-
+ 
 function parseResponse([protocol, statusCode, contentType]){ //This expects an array to be passed in 
     console.log(`Status: ${statusCode}`);
 }
