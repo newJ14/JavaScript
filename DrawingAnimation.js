@@ -1,49 +1,27 @@
-// console.log(this)
-class Timer {
-
-    constructor(durationInput, startButton, pauseButton){
-        this.durationInput = durationInput;
-        this.startButton = startButton;
-        this.pauseButton = pauseButton;
-
-        this.startButton.addEventListener('click', this.start);//.bind(this)); //"this" force the value of this to be an instance of class ++
-        this.pauseButton.addEventListener('click', this.pause);
-    }
-
-// With arrow functions the this keyword always represents the object that defined the arrow function.
-
-    // start(){
-    //     this.importantMethodToCall()
-    // } ++
-
-    start = () => {
-        this.tick();
-        this.interval = setInterval(this.tick, 1000);
-    }
-
-    // importantMethodToCall(){
-    //     console.log('important')
-    // } ++ 
-
-    pause = () => {
-        clearInterval(this.interval);
-    }
-
-    onDurationChange(){
-
-    }
-
-    tick = () => {
-        console.log('tick');
-    }
-
-}
-
 const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector('#start');
 const pauseButton = document.querySelector('#pause');
+const circle = document.querySelector('circle');
 
-const timer = new Timer(durationInput, startButton, pauseButton);
+const perimeter = circle.getAttribute('r') * 2 * Math.PI;
+circle.setAttribute('stroke-dasharray', perimeter);
+
+
+let duration
+let currentOffset = 0; 
+const timer = new Timer(durationInput, startButton, pauseButton, {
+    onStart(totalDuration) {
+        duration = totalDuration;
+    },
+    onTick(timeRemaining) {
+        circle.setAttribute('stroke-dashoffset',
+        (perimeter * timeRemaining) / duration - perimeter
+        );
+    },
+    onComplete() {
+        console.log('Timer is completed')
+    }
+});
 
 
 
