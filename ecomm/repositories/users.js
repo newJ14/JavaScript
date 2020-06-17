@@ -28,6 +28,8 @@ class UsersRepository {
         records.push(attrs);
         //write the updagted 'records' array back to this.filename
         await this.writeAll(records);
+
+        return attrs;
     }
 
     async writeAll(records){
@@ -62,13 +64,30 @@ class UsersRepository {
         Object.assign(record, attrs);
         await this.writeAll(records);
     }
+
+    async getOneBy(filters){
+        const records = await this.getAll();
+
+        for(let record of records){ 
+            let found = true; 
+            
+            for(let key in filters){
+                if(record[key] !== filters[key]){
+                    found = false;
+                }
+            }
+            
+            if(found) {
+                return record; 
+            }
+        }
+    }
 }
 
-// Node does not support top level await statement. New versoion does
-const test = async() => {
-    const repo = new UsersRepository('users.json');
-    
-    await repo.update('iut', {password: 'mypassword'});
-};
 
-test();
+module.exports = new UsersRepository('users.json');
+// const repo = require('./users')
+
+// module.exports = new UsersRepository; 
+// const UsersRepository = require('./users');
+// const repo = new UsersRepository('users.json')
