@@ -9,6 +9,8 @@ const app = express();
 app.use(express.static('public'));
 //make everything in the file avaliable to the world 
 app.use(bodyParser.urlencoded({extended: true}));
+// post method with urlencoded body parse it for us
+
 app.use(cookieSession({
     keys: ['aifhjdpifds2sfg']
 }))
