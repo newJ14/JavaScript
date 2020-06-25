@@ -1,46 +1,3 @@
-// const layout = require('../layout');
-// const {getError} = require('../../helpers');
-
-// //     //prop === 'email' || 'password' || 'passwordConfirmation'
-// //     if (errors) {
-// //         return errors.mapped()['email'].msg
-// //         //errors is an array. mapped will give us an object 
-// //         //errors.mapped{
-// //         //     email: {
-// //         //         msg: 'invalid email'
-// //         //     },
-// //         //     password:{
-// //         //         msg:'password too short'
-// //         //     },
-// //         //     passwordConfirmation: {
-// //         //         msg: 'passwords must match'
-// //         //     }
-// //         // }
-// //     }
-// // }
-
-// module.exports = ({ req, errors }) => {
-//     //passing an object that has req property 
-//     return layout({
-//         content: `
-//         <div>
-//             your id is: ${req.session.userId}
-//             <form method = "POST">
-//                 <input name = 'email' placeholder = "email" />
-//                 ${getError(errors, 'email')}
-//                 <input name = 'password' placeholder = "password" />
-//                 ${getError(errors, 'password')}
-//                 <input name = 'passwordConfirmation' placeholder = "password confirmation" />
-//                 ${getError(errors, 'passwordConfirmation')}
-
-//                 <button>Sign Up</button>
-//             </form>
-//         </div>   
-//     `
-//     });
-// }
-
-
 const layout = require('../layout');
 const { getError } = require('../../helpers');
 
@@ -64,10 +21,10 @@ module.exports = ({ req, errors }) => {
               </div>
               <div class="field">
                 <label class="label">Password Confirmation</label>
-                <input required class="input" placeholder="Password Confirmation" name="passwordConfirmation" type="password" />
+                <input required class="input" placeholder="Password Confirmation" name="passwordConfirm" type="password" />
                 <p class="help is-danger">${getError(
                   errors,
-                  'passwordConfirmation'
+                  'passwordConfirm'
                 )}</p>
               </div>
               <button class="button is-primary">Submit</button>

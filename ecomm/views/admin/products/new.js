@@ -1,26 +1,35 @@
 const layout = require('../layout');
-const {getError} = require('../../helpers');
+const { getError } = require('../../helpers');
 
 module.exports = ({ errors }) => {
-    return layout({
-        content: `
-            <form method = 'POST' enctype = "multipart/form-data">
-                <input placeholder = "Title" name = "title" />
-                <input placeholder = "Price" name = "price" />
-                <input type = "file" name = "image" />
-                <button>Submit</button>
-            </form>
-        `
-    });
+  return layout({
+    content: `
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <h1 class="subtitle">Create a Product</h1>
+
+          <form method="POST" enctype="multipart/form-data">
+            <div class="field">
+              <label class="label">Title</label>
+              <input class="input" placeholder="Title" name="title">
+              <p class="help is-danger">${getError(errors, 'title')}</p>
+            </div>
+            
+            <div class="field">
+              <label class="label">Price</label>
+              <input class="input" placeholder="Price" name="price">
+              <p class="help is-danger">${getError(errors, 'price')}</p>
+            </div>
+            
+            <div class="field">
+              <label class="label">Image</label>            
+              <input type="file" name="image" />
+            </div>
+            <br />
+            <button class="button is-primary">Create</button>
+          </form>
+        </div>
+      </div>
+    `
+  });
 };
-
-// enctype = "application/x-www-form-urlencoded" (In the form method default)
-// Take this infomration and make it safe to be used inside of the url - urlencoded 
-// If you use urlencoded, the file might contain some data that can't be used in the url
-// so we need to use another method 
-
-// multipart/form-data" take all the pieces of data out of the form 
-// and for each separate input, send each file to the backend server in a different little part 
-// Our file contains some data that can't be turned into url 
-
-// Content-Type: Boundary - this means that there is going to be another chunk of data coming behind 
